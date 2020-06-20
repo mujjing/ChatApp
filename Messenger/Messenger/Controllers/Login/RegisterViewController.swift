@@ -20,7 +20,10 @@ class RegisterViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "person")
         imageView.tintColor = .gray
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
     }()
     
@@ -125,6 +128,7 @@ class RegisterViewController: UIViewController {
     
     @objc func didTapChangeProfilePic(){
         print("change pic called")
+        presentPhotoActionSheet()
     }
     
     override func viewDidLayoutSubviews() {
@@ -132,6 +136,8 @@ class RegisterViewController: UIViewController {
         scrollView.frame = view.bounds
         let size = scrollView.width / 3
         imageView.frame = CGRect(x: (scrollView.width - size) / 2, y: 20, width: size, height: size)
+        imageView.layer.cornerRadius = imageView.width / 2.0
+        
         lastNameField.frame = CGRect(x: 30, y: imageView.bottom + 30, width: scrollView.width - 60, height: 52)
         firstNameField.frame = CGRect(x: 30, y: lastNameField.bottom + 10, width: scrollView.width - 60, height: 52)
         emailField.frame = CGRect(x: 30, y: firstNameField.bottom + 10, width: scrollView.width - 60, height: 52)
@@ -177,4 +183,47 @@ extension RegisterViewController : UITextFieldDelegate{
         return true
     }
     
+}
+
+extension RegisterViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func presentPhotoActionSheet(){
+        let actionSheet = UIAlertController(title: "프로필 사진 선택", message: "어떤 방식으로 선택하시겠습니까?", preferredStyle: .actionSheet)
+        
+        let takingPhoto = UIAlertAction(title: "사진찍기", style: .default, handler: {[weak self] _ in
+            self?.presentCamera()
+        })
+        let choosingPhoto = UIAlertAction(title: "앨범에서 선택하기", style: .default, handler: {[weak self] _ in
+            self?.presentPhotoPicker()
+        })
+        let cancel = UIAlertAction(title: "취소하기", style: .cancel, handler: nil)
+        actionSheet.addAction(takingPhoto)
+        actionSheet.addAction(choosingPhoto)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
+    }
+    func presentCamera(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    func presentPhotoPicker(){
+        let vc = UIImagePickerController()
+         vc.sourceType = .photoLibrary
+         vc.delegate = self
+         vc.allowsEditing = true
+         present(vc, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+     
+        imageView.image = (info[UIImagePickerController.InfoKey.originalImage] as! UIImage)
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
