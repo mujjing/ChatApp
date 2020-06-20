@@ -64,6 +64,16 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight:.bold)
         return button
     }()
+    private let registerBtn : UIButton = {
+       let button = UIButton()
+        button.setTitle("회원가입", for: .normal)
+        button.backgroundColor = .link
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight:.bold)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,9 +81,10 @@ class LoginViewController: UIViewController {
         title = "로그인"
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "회원가입", style: .done, target: self, action: #selector(didTapRegister))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "회원가입", style: .done, target: self, action: #selector(didTapRegister))
         
         loginBtn.addTarget(self, action: #selector(loginBtnEvent), for: .touchUpInside)
+        registerBtn.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
         
         emailField.delegate = self
         passwordField.delegate = self
@@ -83,6 +94,7 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginBtn)
+        scrollView.addSubview(registerBtn)
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,6 +105,7 @@ class LoginViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom + 30, width: scrollView.width - 60, height: 52)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width - 60, height: 52)
         loginBtn.frame = CGRect(x: 30, y: passwordField.bottom + 20, width: scrollView.width - 60, height: 52)
+        registerBtn.frame = CGRect(x: 30, y: loginBtn.bottom + 10, width: scrollView.width - 60, height: 52)
     }
     
     @objc func loginBtnEvent(){

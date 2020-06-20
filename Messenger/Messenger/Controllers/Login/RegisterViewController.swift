@@ -204,11 +204,18 @@ extension RegisterViewController : UIImagePickerControllerDelegate, UINavigation
         present(actionSheet, animated: true)
     }
     func presentCamera(){
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
+        if (UIImagePickerController.isSourceTypeAvailable(.camera)){
+            let vc = UIImagePickerController()
+            vc.sourceType = .camera
+            vc.delegate = self
+            vc.allowsEditing = true
+            present(vc, animated: true)
+        }else{
+            let alertC = UIAlertController(title: "에러", message: "카메라를 실행할 수 없습니다", preferredStyle: .alert)
+            let alertA = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+            alertC.addAction(alertA)
+            present(alertC, animated: true)
+        }
     }
     func presentPhotoPicker(){
         let vc = UIImagePickerController()
