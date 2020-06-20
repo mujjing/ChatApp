@@ -13,12 +13,13 @@
 		18115AAA249E3EDF0008474F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18115AA9249E3EDF0008474F /* Assets.xcassets */; };
 		18115AAD249E3EDF0008474F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18115AAB249E3EDF0008474F /* LaunchScreen.storyboard */; };
 		18115ABB249E41100008474F /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ABA249E41100008474F /* ConversationsViewController.swift */; };
-		18115ABD249E418B0008474F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ABC249E418B0008474F /* LoginViewController.swift */; };
-		18115ABF249E419D0008474F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ABE249E419D0008474F /* RegisterViewController.swift */; };
 		18115AC1249E41BC0008474F /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115AC0249E41BC0008474F /* PhotoViewerViewController.swift */; };
 		18115AC3249E41D00008474F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115AC2249E41D00008474F /* VideoPlayerViewController.swift */; };
 		18115AC5249E42010008474F /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115AC4249E42010008474F /* NewConversationViewController.swift */; };
 		18115AC7249E421C0008474F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115AC6249E421C0008474F /* ProfileViewController.swift */; };
+		18115ACA249E437D0008474F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115AC9249E437D0008474F /* LoginViewController.swift */; };
+		18115ACC249E439C0008474F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ACB249E439C0008474F /* RegisterViewController.swift */; };
+		18115ACE249E472F0008474F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ACD249E472F0008474F /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,12 +31,13 @@
 		18115AAC249E3EDF0008474F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18115AAE249E3EDF0008474F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18115ABA249E41100008474F /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
-		18115ABC249E418B0008474F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		18115ABE249E419D0008474F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		18115AC0249E41BC0008474F /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
 		18115AC2249E41D00008474F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		18115AC4249E42010008474F /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		18115AC6249E421C0008474F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		18115AC9249E437D0008474F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		18115ACB249E439C0008474F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		18115ACD249E472F0008474F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				18115ABA249E41100008474F /* ConversationsViewController.swift */,
-				18115ABC249E418B0008474F /* LoginViewController.swift */,
-				18115ABE249E419D0008474F /* RegisterViewController.swift */,
+				18115AC8249E43270008474F /* Login */,
 				18115AC0249E41BC0008474F /* PhotoViewerViewController.swift */,
 				18115AC2249E41D00008474F /* VideoPlayerViewController.swift */,
 				18115AC4249E42010008474F /* NewConversationViewController.swift */,
@@ -120,6 +121,7 @@
 			children = (
 				18115AA0249E3EDD0008474F /* AppDelegate.swift */,
 				18115AA2249E3EDD0008474F /* SceneDelegate.swift */,
+				18115ACD249E472F0008474F /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -131,6 +133,15 @@
 				18115AAB249E3EDF0008474F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		18115AC8249E43270008474F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				18115AC9249E437D0008474F /* LoginViewController.swift */,
+				18115ACB249E439C0008474F /* RegisterViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,11 +215,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18115ABD249E418B0008474F /* LoginViewController.swift in Sources */,
-				18115ABF249E419D0008474F /* RegisterViewController.swift in Sources */,
+				18115ACC249E439C0008474F /* RegisterViewController.swift in Sources */,
+				18115ACA249E437D0008474F /* LoginViewController.swift in Sources */,
 				18115AC5249E42010008474F /* NewConversationViewController.swift in Sources */,
 				18115ABB249E41100008474F /* ConversationsViewController.swift in Sources */,
 				18115AC3249E41D00008474F /* VideoPlayerViewController.swift in Sources */,
+				18115ACE249E472F0008474F /* Extensions.swift in Sources */,
 				18115AA1249E3EDD0008474F /* AppDelegate.swift in Sources */,
 				18115AC7249E421C0008474F /* ProfileViewController.swift in Sources */,
 				18115AA3249E3EDD0008474F /* SceneDelegate.swift in Sources */,
