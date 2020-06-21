@@ -12,9 +12,7 @@ import FirebaseAuth
 class ConversationsViewController: UIViewController {
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
-        
+        super.viewDidLoad()        
     }
     
     override func viewDidAppear(_ animated: Bool) {

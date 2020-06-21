@@ -16,16 +16,16 @@ class LoginViewController: UIViewController {
         scrollView.clipsToBounds = true
         return scrollView
     }()
-
+    
     private let imageView : UIImageView = {
-      let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "messenger")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     private let emailField : UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .done
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let passwordField : UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .done
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let loginBtn : UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("로그인", for: .normal)
         button.backgroundColor = .link
         button.setTitleColor(.white, for: .normal)
@@ -66,23 +66,25 @@ class LoginViewController: UIViewController {
         return button
     }()
     private let registerBtn : UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("회원가입", for: .normal)
-        button.backgroundColor = .link
+        button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         button.titleLabel?.font = .systemFont(ofSize: 20, weight:.bold)
         return button
     }()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "로그인"
         view.backgroundColor = .white
         
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "회원가입", style: .done, target: self, action: #selector(didTapRegister))
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "회원가입", style: .done, target: self, action: #selector(didTapRegister))
         
         loginBtn.addTarget(self, action: #selector(loginBtnEvent), for: .touchUpInside)
         registerBtn.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
@@ -106,13 +108,14 @@ class LoginViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom + 30, width: scrollView.width - 60, height: 52)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width - 60, height: 52)
         loginBtn.frame = CGRect(x: 30, y: passwordField.bottom + 20, width: scrollView.width - 60, height: 52)
-        registerBtn.frame = CGRect(x: 30, y: loginBtn.bottom + 10, width: scrollView.width - 60, height: 52)
+
+        registerBtn.frame = CGRect(x: 40, y: loginBtn.bottom + 80, width: scrollView.width - 80, height: 35)
     }
     
     @objc func loginBtnEvent(){
         
         emailField.resignFirstResponder()
-         passwordField.resignFirstResponder()
+        passwordField.resignFirstResponder()
         
         guard let email = emailField.text, let password = passwordField.text, !email.isEmpty, !password.isEmpty, password.count >= 6 else {
             alertUserLoginError()
@@ -165,3 +168,5 @@ extension LoginViewController : UITextFieldDelegate{
     }
     
 }
+
+
