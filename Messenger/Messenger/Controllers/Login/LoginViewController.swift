@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -75,8 +76,12 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight:.bold)
         return button
     }()
-
     
+    private let facebookloginButton : FBLoginButton = {
+        let button = FBLoginButton()
+        button.permissions = ["email,public_profile"]
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +96,7 @@ class LoginViewController: UIViewController {
         
         emailField.delegate = self
         passwordField.delegate = self
+        facebookloginButton.delegate = self
         
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
@@ -98,6 +104,7 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginBtn)
         scrollView.addSubview(registerBtn)
+        scrollView.addSubview(facebookloginButton)
     }
     
     override func viewDidLayoutSubviews() {
@@ -108,7 +115,10 @@ class LoginViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom + 30, width: scrollView.width - 60, height: 52)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width - 60, height: 52)
         loginBtn.frame = CGRect(x: 30, y: passwordField.bottom + 20, width: scrollView.width - 60, height: 52)
-
+        
+        facebookloginButton.center = scrollView.center
+        facebookloginButton.frame.origin.y = loginBtn.bottom + 10
+        
         registerBtn.frame = CGRect(x: 40, y: loginBtn.bottom + 80, width: scrollView.width - 80, height: 35)
     }
     
@@ -169,4 +179,61 @@ extension LoginViewController : UITextFieldDelegate{
     
 }
 
+extension LoginViewController : LoginButtonDelegate{
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        guard let token = result?.token?.tokenString else{
+            print("User failed to log in with facebook")
+            return
+        }
+        
+        let facebookRequest = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
+        facebookRequest.start(completionHandler: {_, result, error in
+            guard let result = result as? [String : Any],
+                error == nil
+                else{
+                    print("failed to make facebook graph request")
+                    return
+            }
+            print("\(result)")
+            guard let userName = result["name"] as? String,
+                let email = result["email"] as? String else {
+                    print("failed to get email and name from fb result")
+                    return
+            }
+            let firstName = userName.suffix(2)
+            let lastName = userName.prefix(1)
+            
+            DatabaseManager.shared.userExists(with: email, completion: {exists in
+                
+                if !exists{
+                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: String(firstName), lastName: String(lastName), emailAddress: email))
+                }
+            })
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: token)
+            FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
+                
+                guard let strongSelf = self else{
+                    return
+                }
+                guard authResult != nil, error == nil else {
+                    if let error = error{
+                        print("facebook credential login failed, MFA may be need - \(error)")
+                    }
+                    return
+                }
+                print("successfully logged user in")
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                
+            })
+        })
+        
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        //no operation
+    }
+    
+    
+}
 

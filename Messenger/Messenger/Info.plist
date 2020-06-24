@@ -67,16 +67,14 @@
         <dict>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>fb189053315845972</string>
+                <string>fb1441639399355493</string>
             </array>
         </dict>
     </array>
     <key>FacebookAppID</key>
-    <string>189053315845972</string>
+    <string>1441639399355493</string>
     <key>FacebookDisplayName</key>
-    <string>My Messenger</string>
-    
-
+    <string>MyTalk</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>fbapi</string>
