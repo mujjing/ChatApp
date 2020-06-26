@@ -8,8 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class RegisterViewController: UIViewController {
+    
+    private let spiiner = JGProgressHUD(style: .dark)
     
     private let scrollView : UIScrollView = {
         let scrollView = UIScrollView()
@@ -157,9 +160,16 @@ class RegisterViewController: UIViewController {
             alertUserLoginError()
             return
         }
+        
+        spiiner.show(in: view)
+        
         DatabaseManager.shared.userExists(with: email, completion: {[weak self] exists in
             guard let strongSelf = self else{
                 return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spiiner.dismiss()
             }
             
             guard !exists else {
