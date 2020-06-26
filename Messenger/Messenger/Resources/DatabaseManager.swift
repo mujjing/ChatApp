@@ -31,11 +31,18 @@ extension DatabaseManager{
         })
     }
     
-    public func insertUser(with user : ChatAppUser){
+    public func insertUser(with user : ChatAppUser, completion: @escaping (Bool) -> Void){
            database.child(user.safeEmail).setValue([
                "firstName" : user.firstName,
                "lastName" : user.lastName
-           ])
+            ], withCompletionBlock: {error, _ in
+                guard error == nil else {
+                    print("failed to write to database")
+                    completion(false)
+                    return
+                }
+                completion(true)
+           })
        }
 }
 
@@ -43,12 +50,15 @@ struct ChatAppUser{
     let firstName : String
     let lastName : String
     let emailAddress : String
-    // let profileImageURL : String
-    
     var safeEmail : String {
         var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         
         return safeEmail
     }
+    
+    var profilePictureFileURL : String {
+        return "\(safeEmail)_profile_picture.png"
+    }
+
 }

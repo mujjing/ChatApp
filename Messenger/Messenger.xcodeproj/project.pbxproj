@@ -21,6 +21,7 @@
 		18115ACC249E439C0008474F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ACB249E439C0008474F /* RegisterViewController.swift */; };
 		18115ACE249E472F0008474F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18115ACD249E472F0008474F /* Extensions.swift */; };
 		1816BB9D24A4F23000EBD3E9 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816BB9C24A4F23000EBD3E9 /* ChatViewController.swift */; };
+		1816BB9F24A5911500EBD3E9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816BB9E24A5911500EBD3E9 /* StorageManager.swift */; };
 		18C2DADA249F29C8006298E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C2DAD9249F29C8006298E8 /* GoogleService-Info.plist */; };
 		18C2DADC249F3A8D006298E8 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C2DADB249F3A8D006298E8 /* DatabaseManager.swift */; };
 		812D4ED9F8923302E46C010D /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEE887990D092ADF931FD6E5 /* Pods_Messenger.framework */; };
@@ -43,6 +44,7 @@
 		18115ACB249E439C0008474F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		18115ACD249E472F0008474F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1816BB9C24A4F23000EBD3E9 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1816BB9E24A5911500EBD3E9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		18C2DAD9249F29C8006298E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18C2DADB249F3A8D006298E8 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		870AB57547B91456073F8363 /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				18115AA2249E3EDD0008474F /* SceneDelegate.swift */,
 				18115ACD249E472F0008474F /* Extensions.swift */,
 				18C2DADB249F3A8D006298E8 /* DatabaseManager.swift */,
+				1816BB9E24A5911500EBD3E9 /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				18115AA3249E3EDD0008474F /* SceneDelegate.swift in Sources */,
 				1816BB9D24A4F23000EBD3E9 /* ChatViewController.swift in Sources */,
 				18115AC1249E41BC0008474F /* PhotoViewerViewController.swift in Sources */,
+				1816BB9F24A5911500EBD3E9 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
